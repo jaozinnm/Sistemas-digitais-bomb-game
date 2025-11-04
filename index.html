@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Cesar School Bomb Game</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="icon.png" />
+  </head>
+
+  <body>
+    <header class="hero">
+      <!-- barra de tempo (controlada pelo JS) -->
+      <div class="timer-wrap">
+        <div id="timerBar" class="timer-bar"></div>
+      </div>
+
+      <div class="container hero-content">
+        <h1 id="projectTitle">Cesar School Bomb Game</h1>
+        <p class="subtitle">
+          Simulador interativo de desarme — projeto de Sistemas Digitais
+        </p>
+
+        <div class="meta">
+          <span class="badge"
+            >Autores: João Rafael, Kezia Aguiar, Yasmin Karolina, Thayna
+            Verçosa, Larissa Morais, Diogo Alcelino</span
+          >
+        </div>
+
+        <div class="hero-actions">
+          <button id="startBtn" class="btn">Start Bomba</button>
+          <button id="resetBtn" class="btn ghost">Reset</button>
+          <a
+            id="downloadZip"
+            class="btn download"
+            href="assets/cesar-bomb-game.zip"
+            download
+            >Baixar .zip</a
+          >
+        </div>
+      </div>
+    </header>
+
+    <main class="container">
+      <!-- descrição resumida + esquema -->
+      <section id="descricao">
+        <h2>Descrição do Projeto</h2>
+        <p>
+          <strong>Motivação:</strong> Treinar conceitos de lógica digital,
+          temporização e I/O usando um jogo educativo.
+        </p>
+        <p>
+          <strong>Objetivo:</strong> Simular uma bomba com contagem regressiva e
+          permitir que o jogador "desarme" inserindo o código correto (no
+          hardware, via keypad).
+        </p>
+
+        <h3>Esquema Conceitual</h3>
+        <div class="placeholder-img">
+          [INSERIR DIAGRAMA — Ex: Fritzing / esquema elétrico]
+        </div>
+      </section>
+
+      <!-- código de exemplo -->
+      <section id="codigo">
+        <h2>Trecho de Código (Arduino)</h2>
+        <pre><code>// exemplo simplificado
+#include &lt;Keypad.h&gt;
+#include &lt;LiquidCrystal_I2C.h&gt;
+
+LiquidCrystal_I2C lcd(0x27, 16, 2);
+const int buzzer = 8;
+int tempo = 60; // segundos
+
+void setup(){
+  lcd.init();
+  lcd.backlight();
+  pinMode(buzzer, OUTPUT);
+}
+
+void loop(){
+  for(int t = tempo; t &gt;= 0; t--){
+    lcd.setCursor(0,0);
+    lcd.print("Tempo: "); lcd.print(t);
+    delay(1000);
+    // checar teclado para código correto (omiti)
+  }
+  tone(buzzer, 1000);
+  delay(2000);
+  noTone(buzzer);
+  while(1);
+}</code></pre>
+      </section>
+
+      <!-- autores -->
+      <section id="autores">
+        <h2>Autores</h2>
+        <div class="authors">
+          <div class="author-card">
+            <img
+              src="joao.jpg"
+              alt="João Rafael"
+              onerror="this.style.opacity=0.6"
+            />
+            <h4>João Rafael</h4>
+            <p>
+              <a href="https://github.com/jaozinnm" target="_blank">GitHub</a>
+            </p>
+          </div>
+
+          <div class="author-card">
+            <img
+              src="kezia.jpg"
+              alt="Kezia Aguiar"
+              onerror="this.style.opacity=0.6"
+            />
+            <h4>Kezia Aguiar</h4>
+            <p>
+              <a href="https://github.com/keziaguiar12" target="_blank">GitHub</a>
+            </p>
+          </div>
+
+          <div class="author-card">
+            <img
+              src="yasmin.jpg"
+              alt="Yasmin Karolina "
+              onerror="this.style.opacity=0.6"
+            />
+            <h4>Yasmin Karolina</h4>
+            <p>
+              <a href="https://github.com/Yasmink-godinho" target="_blank">GitHub</a>
+            </p>
+          </div>
+
+          <div class="author-card">
+            <img
+              src="thayna.jpg"
+              alt="Thayna Verçosa"
+              onerror="this.style.opacity=0.6"
+            />
+            <h4>Thayna Verçosa</h4>
+            <p>
+              <a href="https://github.com/thaynavercosa" target="_blank">GitHub</a>
+            </p>
+          </div>
+
+          <div class="author-card">
+            <img
+              src="foto-larissa.jpg"
+              alt="Larissa Morais"
+              onerror="this.style.opacity=0.6"
+            />
+            <h4>Larissa Morais</h4>
+            <p>
+              <a href="https://github.com/LarissamnLira" target="_blank">GitHub</a>
+            </p>
+          </div>
+
+          <div class="author-card">
+            <img
+              src="diogo.jpg"
+              alt="Diogo Felipe"
+              onerror="this.style.opacity=0.6"
+            />
+            <h4>Diogo Alcelino</h4>
+            <p>
+              <a href="https://github.com/dioguis" target="_blank">GitHub</a>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="licoes">
+        <h2>Problemas enfrentados e lições aprendidas</h2>
+        <ul>
+          <li>Debounce no keypad: ler repetido sem tratamento.</li>
+          <li>Endereço I2C diferente entre módulos de LCD.</li>
+          <li>Importância de testar cada componente isoladamente.</li>
+        </ul>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>Feito para a disciplina de Sistemas Digitais — Cesar School</p>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>

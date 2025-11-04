@@ -1,0 +1,102 @@
+:root{
+  --accent:#ff1e2d;   /* vermelho explosivo */
+  --accent-dark:#cc1620;
+  --accent-glow: #ff7b6b;
+  --bg:#FFF5E1;
+  --card:#FFEBD0;
+  --muted:#773300;
+  --danger:#ffb300; /* amarelo quente */
+}
+
+*{box-sizing:border-box}
+body{
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Arial;
+  margin:0;
+  background:var(--bg);
+  color:#222;
+}
+
+/* Container */
+.container{max-width:980px;margin:0 auto;padding:20px}
+
+/* HERO / HEADER */
+.hero{
+  position:relative;
+  color:white;
+  background: linear-gradient(120deg, #2a0f12 0%, #0b1520 60%);
+  padding:36px 0 28px;
+  overflow:visible;
+  box-shadow: inset 0 -6px 30px rgba(255,30,45,0.04);
+  transform-origin:center;
+  animation:boomPulse 2.5s infinite ease-in-out;
+}
+.hero .hero-content{max-width:880px;margin:0 auto;text-align:center;padding:6px 20px}
+.hero h1{font-size:2rem;margin:0}
+.subtitle{opacity:0.92;margin-top:6px;color:#ffdfe0}
+
+/* meta badges */
+.meta{margin-top:12px}
+.badge{display:inline-block;background:#ffffff10;padding:6px 10px;border-radius:999px;margin-right:8px;font-size:0.85rem}
+
+/* TIMER BAR */
+.timer-wrap{
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:10px;
+  background:transparent;
+  overflow:hidden;
+  box-shadow:0 6px 20px rgba(0,0,0,0.25);
+}
+.timer-bar{
+  height:100%;
+  width:100%;
+  background: linear-gradient(90deg, var(--accent), var(--danger) 60%, #ffd36b);
+  transition:width 1s linear;
+  transform-origin:left center;
+  box-shadow: 0 0 24px rgba(255,30,45,0.25), inset 0 -2px 12px rgba(0,0,0,0.15);
+}
+
+/* hero actions */
+.hero-actions{margin-top:14px;display:flex;gap:10px;justify-content:center;align-items:center}
+.btn{
+  padding:10px 16px;border-radius:8px;border:0;background:var(--accent);
+  color:white;text-decoration:none;font-weight:600;cursor:pointer;
+  box-shadow: 0 6px 18px rgba(255,30,45,0.12);
+  transition:transform .18s ease, box-shadow .18s;
+  animation:boomButton 2.8s infinite ease-in-out;
+}
+.btn.ghost{background:transparent;border:2px solid rgba(255,255,255,0.12)}
+.btn.download{background:linear-gradient(90deg,var(--accent),var(--accent-dark))}
+
+/* main sections */
+section{margin:20px 0;padding:18px;background:var(--card);border-radius:10px;box-shadow:0 6px 24px rgba(10,10,10,0.04)}
+.placeholder-img{background:#fff6ef;border:2px dashed #ffd8c2;border-radius:8px;padding:28px;text-align:center;color:var(--muted)}
+
+/* authors */
+.authors{display:flex;gap:18px;flex-wrap:wrap}
+.author-card{width:220px;text-align:center;padding:10px}
+.author-card img{width:100%;height:130px;object-fit:cover;border-radius:8px}
+
+/* small utilities */
+pre{background:#0b1220;color:#e6f1ff;padding:12px;border-radius:6px;overflow:auto}
+.footer{padding:18px 0;text-align:center;color:var(--muted)}
+
+/* explosive animations */
+@keyframes boomPulse{0%{transform:scale(1)}50%{transform:scale(1.03)}100%{transform:scale(1)}}
+@keyframes boomBlink{0%{filter:brightness(1)}50%{filter:brightness(1.9)}100%{filter:brightness(1)}}
+@keyframes boomButton{0%{transform:scale(1)}50%{transform:scale(1.06)}100%{transform:scale(1)}}
+
+/* danger visual when perto de explodir */
+.hero.danger{box-shadow: 0 0 120px rgba(255,80,60,0.45), inset 0 -6px 40px rgba(255,80,60,0.12)}
+.timer-bar.blink{
+  animation: boomBlink 0.6s infinite steps(2,end);
+  box-shadow:0 0 32px rgba(255,50,40,0.6), 0 0 60px rgba(255,180,90,0.12);
+}
+
+/* small responsive */
+@media (max-width:640px){
+  .author-card{width:48%}
+  .hero h1{font-size:1.4rem}
+}
